@@ -1,16 +1,16 @@
-macro PIECE_HANDICAP = -> -2
-macro PIECE_GARBAGE  = -> -1
-macro PIECE_NONE     = ->  0
-macro PIECE_I        = ->  1
-macro PIECE_O        = ->  2
-macro PIECE_T        = ->  3
-macro PIECE_J        = ->  4
-macro PIECE_L        = ->  5
-macro PIECE_S        = ->  6
-macro PIECE_Z        = ->  7
+export macro PIECE_HANDICAP = -> -2
+export macro PIECE_GARBAGE  = -> -1
+export macro PIECE_NONE     = ->  0
+export macro PIECE_I        = ->  1
+export macro PIECE_O        = ->  2
+export macro PIECE_T        = ->  3
+export macro PIECE_J        = ->  4
+export macro PIECE_L        = ->  5
+export macro PIECE_S        = ->  6
+export macro PIECE_Z        = ->  7
 
-macro ROTATION_COMMON = -> 0
-macro ROTATION_SRS    = -> 1
+export macro ROTATION_COMMON = -> 0
+export macro ROTATION_SRS    = -> 1
 
 rotations =
 	[$ROTATION_COMMON]:
