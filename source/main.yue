@@ -384,7 +384,7 @@ random =
 		elseif x
 			math.ceil math.max (math.min @seed, 1), x
 		else
-			math.max (math.min @seed 0), 1
+			math.max (math.min @seed, 0), 1
 --
 
 playdate.update = ->
