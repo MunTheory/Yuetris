@@ -394,13 +394,18 @@ randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[@random #data]
 	[$RANDOMIZER_BAG]: (data) =>
 		@queue ??= {}
+
 		if #@queue == 0
+			-- Append to queue
 			for _ = 1, @iterations ?? 1
 				for i = 1, #data
 					@queue[] = data[i]
+
+			-- Shuffle queue
 			for i = #@queue, 1, -1
 				j = @random 0, #@queue
 				@queue[i], @queue[j] = @queue[j], @queue[i]
+
 		table.remove @queue
 --
 
