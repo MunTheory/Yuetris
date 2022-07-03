@@ -1,0 +1,43 @@
+# Windows
+[Dd]esktop.ini
+
+# macOS
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Linux
+*~
+nfs*
+
+# Visual Studio Code
+.vscode/*
+!.vscode/*.code-snippets
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+
+.history/
+*.vsix
+
+# Nova
+.nova/*
+!.nova/Tasks
+
+# Vim
+Session.vim
+Sessionx.vim
+
+# Builds
+Yuetris.pdx
+source/*.lua

@@ -1,0 +1,6 @@
+name=Yuetris
+author=MunTheory
+description=A game of falling blocks
+bundleID=com.muntheory.yuetris
+version=1.0
+buildNumber=1

@@ -1,0 +1,9 @@
+{
+  "actions" : {
+    "build" : {
+      "enabled" : true,
+      "script" : "yue -l source"
+    }
+  },
+  "openLogOnRun" : "fail"
+}

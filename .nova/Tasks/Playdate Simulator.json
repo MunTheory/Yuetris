@@ -1,0 +1,18 @@
+{
+  "actions" : {
+    "build" : {
+      "preActions" : [
+        {
+          "action" : "build",
+          "taskName" : "Compile Yuescript",
+          "type" : "runTask"
+        }
+      ]
+    }
+  },
+  "extension" : {
+    "identifier" : "com.panic.Playdate",
+    "name" : "Playdate"
+  },
+  "extensionTemplate" : "simulator"
+}

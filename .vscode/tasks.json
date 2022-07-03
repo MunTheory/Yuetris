@@ -1,0 +1,87 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		// Yuescript
+		{
+			"label": "Yuescript: Compile",
+			"type": "shell",
+			"command": "yue -l source"
+		},
+
+		// Playdate
+		{
+			"label": "Playdate: Build",
+			"type": "shell",
+			"command": "pdc -v -k source Yuetris", // Be careful; this is to skip '.yue' files
+		},
+		{
+			"label": "Playdate: Run",
+			"type" :"playdate-simulator"
+		},
+
+		// Project
+		{
+			"label": "Project: Compile, Build",
+			"dependsOn": [
+				"Yuescript: Compile",
+				"Playdate: Build"
+			],
+			"dependsOrder": "sequence",
+			"problemMatcher": []
+		},
+		{
+			"label": "Project: Compile, Build, Run",
+			"dependsOn": [
+				"Yuescript: Compile",
+				"Playdate: Build",
+				"Playdate: Run"
+			],
+			"dependsOrder": "sequence",
+			"problemMatcher": []
+		},
+
+		// Visit
+		{
+			"label": "Visit: Yuescript",
+			"type": "shell",
+			"windows": {
+				"command": "explorer https://yuescript.org"
+			},
+			"osx": {
+				"command": "open https://yuescript.org"
+			},
+			"linux": {
+				"command": "xdg-open https://yuescript.org"
+			},
+			"problemMatcher": [],
+		},
+		{
+			"label": "Visit: Playdate SDK",
+			"type": "shell",
+			"windows": {
+				"command": "explorer https://sdk.play.date/"
+			},
+			"osx": {
+				"command": "open https://sdk.play.date/"
+			},
+			"linux": {
+				"command": "xdg-open https://sdk.play.date/"
+			},
+			"problemMatcher": [],
+		},
+		{
+			"label": "Visit: Repository",
+			"type": "shell",
+			"windows": {
+				"command": "explorer https://github.com/MunTheory/Yuetris"
+			},
+			"osx": {
+				"command": "open https://github.com/MunTheory/Yuetris"
+			},
+			"linux": {
+				"command": "xdg-open https://github.com/MunTheory/Yuetris"
+			},
+			"problemMatcher": [],
+		}
+	]
+}
