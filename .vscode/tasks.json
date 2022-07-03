@@ -7,6 +7,11 @@
 			"type": "shell",
 			"command": "cd source; yue -l .; cd .."
 		},
+		{
+			"label": "Yuescript: Compile Minified",
+			"type": "shell",
+			"command": "cd source; yue -m .; cd .."
+		},
 
 		// Playdate
 		{
