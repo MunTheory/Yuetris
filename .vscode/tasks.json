@@ -5,7 +5,7 @@
 		{
 			"label": "Yuescript: Compile",
 			"type": "shell",
-			"command": "yue -l source"
+			"command": "cd source; yue -l .; cd .."
 		},
 
 		// Playdate

@@ -2,7 +2,7 @@
   "actions" : {
     "build" : {
       "enabled" : true,
-      "script" : "yue -l source"
+      "script" : "cd source; yue -l .; cd .."
     }
   },
   "openLogOnRun" : "fail"
