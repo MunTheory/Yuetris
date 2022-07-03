@@ -1,1 +1,357 @@
+macro PIECE_HANDICAP = -> -2
+macro PIECE_GARBAGE  = -> -1
+macro PIECE_NONE     = ->  0
+macro PIECE_I        = ->  1
+macro PIECE_O        = ->  2
+macro PIECE_T        = ->  3
+macro PIECE_J        = ->  4
+macro PIECE_L        = ->  5
+macro PIECE_S        = ->  6
+macro PIECE_Z        = ->  7
+
+macro ROTATION_COMMON = -> 0
+macro ROTATION_SRS    = -> 1
+
+rotations =
+	[$ROTATION_COMMON]:
+		rotate: -> false
+		row: -> 0
+		pieces: {}
+	[$ROTATION_SRS]:
+		rotate: -> false
+		row: -> 0
+		pieces:
+			[$PIECE_I]:
+				width: 4
+				height: 4
+				orientations:
+					* x: 1
+						y: 2
+						width: 4
+						height: 1
+						matrix:
+							* { 0, 0, 0, 0 }
+							* { 1, 1, 1, 1 }
+							* { 0, 0, 0, 0 }
+							* { 0, 0, 0, 0 }
+					* x: 3
+						y: 1
+						width: 1
+						height: 4
+						matrix:
+							* { 0, 0, 1, 0 }
+							* { 0, 0, 1, 0 }
+							* { 0, 0, 1, 0 }
+							* { 0, 0, 1, 0 }
+					* x: 1
+						y: 3
+						width: 4
+						height: 1
+						matrix:
+							* { 0, 0, 0, 0 }
+							* { 0, 0, 0, 0 }
+							* { 1, 1, 1, 1 }
+							* { 0, 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 1
+						height: 4
+						matrix:
+							* { 0, 1, 0, 0 }
+							* { 0, 1, 0, 0 }
+							* { 0, 1, 0, 0 }
+							* { 0, 1, 0, 0 }
+			[$PIECE_O]:
+				width: 4
+				height: 3
+				orientations:
+					* x: 2
+						y: 1
+						width: 2
+						height: 2
+						matrix:
+							* { 0, 1, 1, 0 }
+							* { 0, 1, 1, 0 }
+							* { 0, 0, 0, 0 }
+			[$PIECE_T]:
+				width: 3
+				height: 3
+				orientations:
+					* x: 1
+						y: 1
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 1, 0 }
+							* { 1, 1, 1 }
+							* { 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 0, 1, 1 }
+							* { 0, 1, 0 }
+					* x: 1
+						y: 2
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 0 }
+							* { 1, 1, 1 }
+							* { 0, 1, 0 }
+					* x: 1
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 1, 1, 0 }
+							* { 0, 1, 0 }
+			[$PIECE_J]:
+				width: 3
+				height: 3
+				orientations:
+					* x: 1
+						y: 1
+						width: 3
+						height: 2
+						matrix:
+							* { 1, 0, 0 }
+							* { 1, 1, 1 }
+							* { 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 1 }
+							* { 0, 1, 0 }
+							* { 0, 1, 0 }
+					* x: 1
+						y: 2
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 0 }
+							* { 1, 1, 1 }
+							* { 0, 0, 1 }
+					* x: 1
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 0, 1, 0 }
+							* { 1, 1, 0 }
+			[$PIECE_L]:
+				width: 3
+				height: 3
+				orientations:
+					* x: 1
+						y: 1
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 1 }
+							* { 1, 1, 1 }
+							* { 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 0, 1, 0 }
+							* { 0, 1, 1 }
+					* x: 1
+						y: 2
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 0 }
+							* { 1, 1, 1 }
+							* { 1, 0, 0 }
+					* x: 1
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 1, 1, 0 }
+							* { 0, 1, 0 }
+							* { 0, 1, 0 }
+			[$PIECE_S]:
+				width: 3
+				height: 3
+				orientations:
+					* x: 1
+						y: 1
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 1, 1 }
+							* { 1, 1, 0 }
+							* { 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 0, 1, 1 }
+							* { 0, 0, 1 }
+					* x: 1
+						y: 2
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 0 }
+							* { 0, 1, 1 }
+							* { 1, 1, 0 }
+					* x: 1
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 1, 0, 0 }
+							* { 1, 1, 0 }
+							* { 0, 1, 0 }
+			[$PIECE_Z]:
+				width: 3
+				height: 3
+				orientations:
+					* x: 1
+						y: 1
+						width: 3
+						height: 2
+						matrix:
+							* { 1, 1, 0 }
+							* { 0, 1, 1 }
+							* { 0, 0, 0 }
+					* x: 2
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 0, 1 }
+							* { 0, 1, 1 }
+							* { 0, 1, 0 }
+					* x: 1
+						y: 2
+						width: 3
+						height: 2
+						matrix:
+							* { 0, 0, 0 }
+							* { 1, 1, 0 }
+							* { 0, 1, 1 }
+					* x: 1
+						y: 1
+						width: 2
+						height: 3
+						matrix:
+							* { 0, 1, 0 }
+							* { 1, 1, 0 }
+							* { 1, 0, 0 }
+		kickdata:
+			[$PIECE_NONE]:
+				* clockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* { -1,  1 }
+						* {  0, -2 }
+						* { -1, -2 }
+					counterclockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* {  1, -1 }
+						* {  0,  2 }
+						* {  1,  2 }
+				* clockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* {  1, -1 }
+						* {  0,  2 }
+						* {  1,  2 }
+					counterclockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* { -1,  1 }
+						* {  0, -2 }
+						* { -1, -2 }
+				* clockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* {  1,  1 }
+						* {  0, -2 }
+						* {  1, -2 }
+					counterclockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* { -1, -1 }
+						* {  0,  2 }
+						* { -1,  2 }
+				* clockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* { -1, -1 }
+						* {  0,  2 }
+						* { -1,  2 }
+					counterclockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* {  1,  1 }
+						* {  0, -2 }
+						* {  1, -2 }
+			[$PIECE_I]:
+				* clockwise:
+						* {  0,  0 }
+						* { -2,  0 }
+						* {  1,  0 }
+						* { -2, -1 }
+						* {  1,  2 }
+					counterclockwise:
+						* {  0,  0 }
+						* {  2,  0 }
+						* { -1,  0 }
+						* {  2,  1 }
+						* { -1, -2 }
+				* clockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* {  2,  0 }
+						* { -1,  2 }
+						* {  2, -1 }
+					counterclockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* { -2,  0 }
+						* {  1, -2 }
+						* { -2,  1 }
+				* clockwise:
+						* {  0,  0 }
+						* {  2,  0 }
+						* { -1,  0 }
+						* {  2,  1 }
+						* { -1, -2 }
+					counterclockwise:
+						* {  0,  0 }
+						* { -2,  0 }
+						* {  1,  0 }
+						* { -2, -1 }
+						* {  1,  2 }
+				* clockwise:
+						* {  0,  0 }
+						* {  1,  0 }
+						* { -2,  0 }
+						* {  1, -2 }
+						* { -2,  1 }
+					counterclockwise:
+						* {  0,  0 }
+						* { -1,  0 }
+						* {  2,  0 }
+						* { -1,  2 }
+						* {  2, -1 }
+--
+
 playdate.update = ->
