@@ -18,6 +18,15 @@
 			"label": "Playdate: Run",
 			"type" :"playdate-simulator"
 		},
+		{
+			"label": "Playdate: Build, Run",
+			"dependsOn": [
+				"Playdate: Build",
+				"Playdate: Run"
+			],
+			"dependsOrder": "sequence",
+			"problemMatcher": []
+		},
 
 		// Project
 		{
