@@ -14,12 +14,12 @@ export macro ROTATION_SRS    = -> 1
 
 rotations =
 	[$ROTATION_COMMON]:
-		rotate: -> false
-		row: -> 0
+		rotate: (instance, turn) => false
+		row: (instance) => 0
 		pieces: {}
 	[$ROTATION_SRS]:
-		rotate: -> false
-		row: -> 0
+		rotate: (instance, turn) => false
+		row: (instance) => 0
 		pieces:
 			[$PIECE_I]:
 				width: 4
