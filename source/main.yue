@@ -9,3 +9,5 @@ $IMPORT "randomizers"
 $IMPORT "rotations"
 
 playdate.update = ->
+
+return
