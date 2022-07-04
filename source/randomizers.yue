@@ -54,5 +54,3 @@ const randomizers =
 
 		table.remove @queue
 --
-
-return
