@@ -14,7 +14,7 @@ macro PIECE_Z        = ->  7
 macro ROTATION_COMMON = -> 0
 macro ROTATION_SRS    = -> 1
 
-rotations =
+const rotations =
 	[$ROTATION_COMMON]:
 		rotate: (instance, turn) => false
 		row: (instance) => 0

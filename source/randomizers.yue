@@ -5,7 +5,7 @@ macro RANDOM_PRNG = -> 1
 macro RANDOM_SAME = -> 2
 
 -- Each function should replicate math.random
-random =
+const random =
 	[$RANDOM_RNG]: (x, y) =>
 		if y
 			math.random x, y
@@ -36,7 +36,7 @@ random =
 macro RANDOMIZER_RANDOM = -> 0
 macro RANDOMIZER_BAG    = -> 1
 
-randomizers =
+const randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[@random #data]
 	[$RANDOMIZER_BAG]: (data) =>
 		@queue ??= {}
