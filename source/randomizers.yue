@@ -1,6 +1,8 @@
-export macro RANDOM_RNG  = -> 0
-export macro RANDOM_PRNG = -> 1
-export macro RANDOM_SAME = -> 2
+global ^
+
+macro RANDOM_RNG  = -> 0
+macro RANDOM_PRNG = -> 1
+macro RANDOM_SAME = -> 2
 
 -- Each function should replicate math.random
 random =
@@ -31,8 +33,8 @@ random =
 			math.max (math.min @seed, 0), 1
 --
 
-export macro RANDOMIZER_RANDOM = -> 0
-export macro RANDOMIZER_BAG    = -> 1
+macro RANDOMIZER_RANDOM = -> 0
+macro RANDOMIZER_BAG    = -> 1
 
 randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[@random #data]
