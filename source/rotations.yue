@@ -1,5 +1,7 @@
 global ^
 
+import "playdate" as $
+
 export macro PIECE_HANDICAP = -> -2
 export macro PIECE_GARBAGE  = -> -1
 export macro PIECE_NONE     = ->  0

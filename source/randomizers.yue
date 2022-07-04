@@ -1,5 +1,7 @@
 global ^
 
+import "playdate" as $
+
 export macro RANDOM_RNG  = -> 0
 export macro RANDOM_PRNG = -> 1
 export macro RANDOM_SAME = -> 2

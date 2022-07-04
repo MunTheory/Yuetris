@@ -1,10 +1,8 @@
 global ^
 
-export macro IMPORT = (path) -> {
-	code: "import(#{path})"
-	type: "lua"
-}
+import "playdate" as $
 
+$IMPORT "playdate"
 $IMPORT "randomizers"
 $IMPORT "rotations"
 
