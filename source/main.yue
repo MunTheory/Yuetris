@@ -1,6 +1,6 @@
 global ^
 
-macro IMPORT = (path) -> {
+export macro IMPORT = (path) -> {
 	code: "import(#{path})"
 	type: "lua"
 }
