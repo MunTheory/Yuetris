@@ -14,6 +14,10 @@ export macro PIECE_L        = ->  5
 export macro PIECE_S        = ->  6
 export macro PIECE_Z        = ->  7
 
+-- Bag Identifiers
+export macro BAG_NONE        = -> 0
+export macro BAG_TETROMINOES = -> 1
+
 -- Rotation Identifiers
 export macro ROTATION_COMMON = -> 0
 export macro ROTATION_SRS    = -> 1
