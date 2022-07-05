@@ -3,7 +3,7 @@ global ^
 import "macros" as $
 
 -- Each function should replicate math.random
-const random =
+const randoms =
 	[$RANDOM_RNG]: (x, y) =>
 		if y
 			math.random x, y
