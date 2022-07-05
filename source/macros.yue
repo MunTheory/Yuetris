@@ -1,10 +1,8 @@
-export macro RANDOM_RNG  = -> 0
-export macro RANDOM_PRNG = -> 1
-export macro RANDOM_SAME = -> 2
+--
+-- YUETRIS
+--
 
-export macro RANDOMIZER_RANDOM = -> 0
-export macro RANDOMIZER_BAG    = -> 1
-
+-- Piece Identifiers
 export macro PIECE_HANDICAP = -> -2
 export macro PIECE_GARBAGE  = -> -1
 export macro PIECE_NONE     = ->  0
@@ -16,10 +14,23 @@ export macro PIECE_L        = ->  5
 export macro PIECE_S        = ->  6
 export macro PIECE_Z        = ->  7
 
+-- Rotation Identifiers
 export macro ROTATION_COMMON = -> 0
 export macro ROTATION_SRS    = -> 1
 
--- Playdate
+-- Random Identifiers
+export macro RANDOM_RNG  = -> 0
+export macro RANDOM_PRNG = -> 1
+export macro RANDOM_SAME = -> 2
+
+-- Randomizer Identifiers
+export macro RANDOMIZER_RANDOM = -> 0
+export macro RANDOMIZER_BAG    = -> 1
+
+--
+-- PLAYDATE
+--
+
 export macro IMPORT = (path) -> {
 	code: "import(#{path})"
 	type: "lua"
