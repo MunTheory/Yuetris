@@ -2,7 +2,6 @@ global ^
 
 import "macros" as $
 
-$IMPORT "macros"
 $IMPORT "randomizers"
 $IMPORT "rotations"
 
