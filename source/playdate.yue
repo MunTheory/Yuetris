@@ -1,6 +1,0 @@
-global ^
-
-export macro IMPORT = (path) -> {
-	code: "import(#{path})"
-	type: "lua"
-}

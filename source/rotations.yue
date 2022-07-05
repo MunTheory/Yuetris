@@ -1,20 +1,6 @@
 global ^
 
-import "playdate" as $
-
-export macro PIECE_HANDICAP = -> -2
-export macro PIECE_GARBAGE  = -> -1
-export macro PIECE_NONE     = ->  0
-export macro PIECE_I        = ->  1
-export macro PIECE_O        = ->  2
-export macro PIECE_T        = ->  3
-export macro PIECE_J        = ->  4
-export macro PIECE_L        = ->  5
-export macro PIECE_S        = ->  6
-export macro PIECE_Z        = ->  7
-
-export macro ROTATION_COMMON = -> 0
-export macro ROTATION_SRS    = -> 1
+import "macros" as $
 
 const rotations =
 	[$ROTATION_COMMON]:

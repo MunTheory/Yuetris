@@ -1,10 +1,6 @@
 global ^
 
-import "playdate" as $
-
-export macro RANDOM_RNG  = -> 0
-export macro RANDOM_PRNG = -> 1
-export macro RANDOM_SAME = -> 2
+import "macros" as $
 
 -- Each function should replicate math.random
 const random =
@@ -34,9 +30,6 @@ const random =
 		else
 			math.max (math.min @seed, 0), 1
 --
-
-export macro RANDOMIZER_RANDOM = -> 0
-export macro RANDOMIZER_BAG    = -> 1
 
 const randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[@random #data]

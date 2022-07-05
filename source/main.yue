@@ -1,9 +1,13 @@
 global ^
 
-import "playdate" as $
+import "macros" as $
 
-$IMPORT "playdate"
+$IMPORT "macros"
 $IMPORT "randomizers"
 $IMPORT "rotations"
 
 playdate.update = ->
+
+playdate.keyPressed = (key) ->
+playdate.keyReleased = (key) ->
+playdate.debugDraw = ->
