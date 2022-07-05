@@ -5,13 +5,13 @@ import "macros" as $
 const bags =
 	[$BAG_NONE]: {}
 	[$BAG_TETROMINOES]:
-		* PIECE_I
-		* PIECE_O
-		* PIECE_T
-		* PIECE_J
-		* PIECE_L
-		* PIECE_S
-		* PIECE_Z
+		* $PIECE_I
+		* $PIECE_O
+		* $PIECE_T
+		* $PIECE_J
+		* $PIECE_L
+		* $PIECE_S
+		* $PIECE_Z
 --
 
 return
