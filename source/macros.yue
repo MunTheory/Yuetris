@@ -31,7 +31,220 @@ export macro RANDOMIZER_BAG    = -> 1
 -- PLAYDATE
 --
 
+-- Global Functions
 export macro IMPORT = (path) -> {
 	code: "import(#{path})"
 	type: "lua"
 }
+export macro CLASS = (name, properties, namespace) ->
+	"_G['class'](#{name}, #{properties}, #{namespace})"
+
+-- Tables
+export macro DATASTORE    = -> "playdate.datastore"
+export macro DISPLAY      = -> "playdate.display"
+export macro EASING       = -> "playdate.easingFunctions"
+export macro FILE         = -> "playdate.file"
+export macro FRAMETIMER   = -> "playdate.frameTimer"
+export macro GEOMETRY     = -> "playdate.geometry"
+export macro GRAPHICS     = -> "playdate.graphics"
+export macro INPUTHANDLER = -> "playdate.inputHandler"
+export macro JSON         = -> "playdate.json"
+export macro KEYBOARD     = -> "playdate.keyboard"
+export macro LOGIC        = -> "playdate.math.logic"
+export macro MATH         = -> "playdate.math"
+export macro METADATA     = -> "playdate.metadata"
+export macro NINESLICE    = -> "$GRAPHICS.nineSlice"
+export macro TIMER        = -> "playdate.timer"
+export macro SAVE         = -> "playdate.save"
+export macro SOUND        = -> "playdate.sound"
+export macro SPRITE       = -> "$GRAPHICS.sprite"
+export macro STRING       = -> "playdate.string"
+export macro UI           = -> "playdate.ui"
+
+-- General
+export macro API          =          -> "playdate.apiVersion!"
+export macro START        =          -> "playdate.start!"
+export macro STOP         =          -> "playdate.stop!"
+export macro AUTOLOCK     = (toggle) -> "playdate.setAutoLockDisabled not #{toggle}"
+export macro ORIENTATION  =          -> "playdate.getDeviceOrientation!"
+export macro PITCHANDROLL =          -> "playdate.getPitchAndRoll!"
+
+-- Display
+export macro WIDTH       =         -> "$DISPLAY.getWidth!"
+export macro HEIGHT      =         -> "$DISPLAY.getHeight!"
+export macro SIZE        =         -> "$DISPLAY.getSize!"
+export macro RECT        =         -> "$DISPLAY.getRect!"
+export macro SCALE       = (scale) -> scale? and "$DISPLAY.setScale #{scale}" or "$DISPLAY.getScale!"
+export macro INVERTED    = (flag)  -> flag? and "$DISPLAY.setInverted #{flag}" or "$DISPLAY.getInverted!"
+export macro MOSAIC      = (x, y)  -> (x? and y?) and "$DISPLAY.setMosaic #{x}, #{y}" or "$DISPLAY.getMosaic!"
+export macro OFFSET      = (x, y)  -> (x? and y?) and "$DISPLAY.setOffset #{x}, #{y}" or "$DISPLAY.getOffset!"
+export macro FLIPPED     = (x, y)  -> "$DISPLAY.setFlipped #{x}, #{y}"
+export macro REFRESHRATE = (rate)  -> rate? and "$DISPLAY.setRefreshRate #{rate}" or "$DISPLAY.getRefreshRate!"
+export macro FLUSH       =         -> "$DISPLAY.flush!"
+
+-- Graphics
+export macro CONTEXT_PUSH = (context)           -> "$GRAPHICS.pushContext #{context}"
+export macro CONTEXT_POP  =                     -> "$GRAPHICS.popContext!"
+export macro CLEAR        = (color)             -> "$GRAPHICS.clear #{color}"
+export macro COLOR        = (color)             -> color? and "$GRAPHICS.setColor #{color}" or "$GRAPHICS.getColor!"
+export macro BACKGROUND   = (color)             -> color? and "$GRAPHICS.setBackgroundColor #{color}" or "$GRAPHICS.getBackgroundColor!"
+export macro PATTERN      = (pattern)           -> "$GRAPHICS.setPattern #{pattern}"
+export macro DITHER       = (alpha, ditherType) -> "$GRAPHICS.setDitherPattern #{alpha}, #{ditherType}"
+
+export macro LINE          = (x1, y1, x2, y2)     -> "$GRAPHICS.drawLine          #{x1}, #{y1}, #{x2}, #{y2}"
+export macro LINE          = (shape)              -> "$GRAPHICS.drawLine          #{shape}"
+export macro LINECAPSTYLE  = (style)              -> "$GRAPHICS.setLineCapStyle   #{style}"
+export macro PIXEL         = (x, y)               -> "$GRAPHICS.drawPixel         #{x}, #{y}"
+export macro PIXEL         = (shape)              -> "$GRAPHICS.drawPixel         #{shape}"
+export macro DRAWRECT      = (x, y, w, h)         -> "$GRAPHICS.drawRect          #{x}, #{y}, #{w}, #{h}"
+export macro DRAWRECT      = (shape)              -> "$GRAPHICS.drawRect          #{shape}"
+export macro FILLRECT      = (x, y, w, h)         -> "$GRAPHICS.fillRect          #{x}, #{y}, #{w}, #{h}"
+export macro FILLRECT      = (shape)              -> "$GRAPHICS.fillRect          #{shape}"
+export macro DRAWROUNDRECT = (x, y, w, h, r)      -> "$GRAPHICS.drawRoundRect     #{x}, #{y}, #{w}, #{h}, #{r}"
+export macro DRAWROUNDRECT = (shape, r)           -> "$GRAPHICS.drawRoundRect     #{shape}, #{r}"
+export macro FILLROUNDRECT = (x, y, w, h, r)      -> "$GRAPHICS.fillRoundRect     #{x}, #{y}, #{w}, #{h}, #{r}"
+export macro FILLROUNDRECT = (shape, r)           -> "$GRAPHICS.fillRoundRect     #{shape}, #{r}"
+export macro ARC           = (x, y, r, sA, eA)    -> "$GRAPHICS.drawArc           #{x}, #{y}, #{r}, #{sA}, #{eA}"
+export macro ARC           = (shape)              -> "$GRAPHICS.drawArc           #{shape}"
+export macro DRAWCIRCLE    = (x, y, r)            -> "$GRAPHICS.drawCircleAtPoint #{x}, #{y}, #{r}"
+export macro DRAWCIRCLE    = (shape, r)           -> "$GRAPHICS.drawCircleAtPoint #{shape}, #{r}"
+export macro DRAWCIRCLE    = (x, y, w, h)         -> "$GRAPHICS.drawCircleInRect  #{x}, #{y}, #{w}, #{h}"
+export macro DRAWCIRCLE    = (shape)              -> "$GRAPHICS.drawCircleInRect  #{shape}"
+export macro FILLCIRCLE    = (x, y, r)            -> "$GRAPHICS.fillCircleAtPoint #{x}, #{y}, #{r}"
+export macro FILLCIRCLE    = (shape, r)           -> "$GRAPHICS.fillCircleAtPoint #{shape}, #{r}"
+export macro FILLCIRCLE    = (x, y, w, h)         -> "$GRAPHICS.fillCircleInRect  #{x}, #{y}, #{w}, #{h}"
+export macro FILLCIRCLE    = (shape)              -> "$GRAPHICS.fillCircleInRect  #{shape}"
+export macro DRAWELLIPSE   = (x, y, w, h, sA, eA) -> "$GRAPHICS.drawEllipseInRect #{x}, #{y}, #{w}, #{h}, #{sA}, #{eA}"
+export macro DRAWELLIPSE   = (shape, sA, eA)      -> "$GRAPHICS.drawEllipseInRect #{shape}, #{sA}, #{eA}"
+export macro FILLELLIPSE   = (x, y, w, h, sA, eA) -> "$GRAPHICS.fillEllipseInRect #{x}, #{y}, #{w}, #{h}, #{sA}, #{eA}"
+export macro FILLELLIPSE   = (shape, sA, eA)      -> "$GRAPHICS.fillEllipseInRect #{shape}, #{sA}, #{eA}"
+
+export macro COLOR_BLACK = -> "$GRAPHICS.kColorBlack"
+export macro COLOR_WHITE = -> "$GRAPHICS.kColorWhite"
+export macro COLOR_CLEAR = -> "$GRAPHICS.kColorClear"
+export macro COLOR_XOR   = -> "$GRAPHICS.kColorXOR"
+
+export macro LINECAPSTYLE_BUTT   = -> "$GRAPHICS.kLineCapStyleButt"
+export macro LINECAPSTYLE_ROUND  = -> "$GRAPHICS.kLineCapStyleRound"
+export macro LINECAPSTYLE_SQUARE = -> "$GRAPHICS.kLineCapStyleSquare"
+
+-- Menu
+export macro SYSTEMMENU = -> "playdate.getSystemMenu!"
+
+-- Language
+export macro LANGUAGE = -> "playdate.getSystemLanguage!"
+export macro ENGLISH  = -> "$GRAPHICS.font.kLanguageEnglish"
+export macro JAPANESE = -> "$GRAPHICS.font.kLanguageJapanese"
+
+-- Accessibility
+export macro REDUCEFLASHING = -> "playdate.getReducedFlashing!"
+export macro FLIPPED        = -> "playdate.getFlipped!"
+
+-- Accelerometer
+export macro ACCELEROMETER         = -> "playdate.readAccelerometer!"
+export macro ACCELEROMETER_START   = -> "playdate.startAcclerometer!"
+export macro ACCELEROMETER_STOP    = -> "playdate.stopAcclerometer!"
+export macro ACCELEROMETER_RUNNING = -> "playdate.accelerometerIsRunning!"
+
+-- Button
+export macro BUTTON_A     = -> "playdate.kButtonA"
+export macro BUTTON_B     = -> "playdate.kButtonB"
+export macro BUTTON_UP    = -> "playdate.kButtonUp"
+export macro BUTTON_DOWN  = -> "playdate.kButtonDown"
+export macro BUTTON_LEFT  = -> "playdate.kButtonLeft"
+export macro BUTTON_RIGHT = -> "playdate.kButtonRight"
+
+export macro BUTTON      =          -> "playdate.getButtonState!"
+export macro BUTTON_IS   = (button) -> "playdate.buttonIsPressed    #{button}"
+export macro BUTTON_JUST = (button) -> "playdate.buttonJustPressed  #{button}"
+export macro BUTTON_WAS  = (button) -> "playdate.buttonJustReleased #{button}"
+
+-- Crank
+export macro CRANK_DOCKED   =                      -> "playdate.isCrankDocked!"
+export macro CRANK_POSITION =                      -> "playdate.getCrankPosition!"
+export macro CRANK_CHANGE   =                      -> "playdate.getCrankChange!"
+export macro CRANK_TICKS    = (ticksPerRevolution) -> "playdate.getCrankTicks #{ticksPerRevolution}"
+export macro CRANK_SOUNDS   = (toggle)             -> "playdate.setCrankSoundsDisabled not #{toggle}"
+
+-- Input Handler
+export macro INPUTHANDLER_PUSH = (handler, masksPreviousHandlers) -> "$INPUTHANDLER.push #{handler}, #{masksPreviousHandlers}"
+export macro INPUTHANDLER_POP  =                                  -> "$INPUTHANDLER.pop!"
+
+-- Time
+export macro CURRENT_MILLIS     =                         -> "playdate.getCurrentTimeMilliseconds!"
+export macro ELAPSED            =                         -> "playdate.getElapsedTime!"
+export macro ELAPSED_RESET      =                         -> "playdate.resetElapsedTime!"
+export macro SINCE_EPOCH        =                         -> "playdate.getSecondsSinceEpoch!"
+export macro TIME               =                         -> "playdate.getTime!"
+export macro GMTTIME            =                         -> "playdate.getGMTTime!"
+export macro EPOCH_FROM_TIME    = (time)                  -> "playdate.epochFromTime #{time}"
+export macro EPOCH_FROM_GMTTIME = (time)                  -> "playdate.epochFromGMTTime #{epoch}"
+export macro TIME_FROM_EPOCH    = (seconds, milliseconds) -> "playdate.timeFromEpoch #{seconds}, #{milliseconds}"
+export macro GMTTIME_FROM_EPOCH = (seconds, milliseconds) -> "playdate.GMTTimeFromEpoch #{seconds}, #{milliseconds}"
+
+-- Debug
+export macro FPS     = (x, y)       -> "playdate.drawFPS #{x}, #{y}"
+export macro WHERE   =              -> "where!"
+export macro NEWLINE = (toggle)     -> "playdate.setNewlinePrinted #{toggle}"
+export macro SAMPLE  = (name, func) -> "sample #{name}, #{func}"
+export macro STATS   = (seconds)    -> seconds? and "playdate.setStatsInterval #{seconds}" or "playdate.getStats!"
+
+-- Easing Functions
+export macro LINEAR        = (t, b, c, d)       -> "$EASING.linear       #{t}, #{b}, #{c}, #{d}"
+export macro QUAD_IN       = (t, b, c, d)       -> "$EASING.inQuad       #{t}, #{b}, #{c}, #{d}"
+export macro QUAD_OUT      = (t, b, c, d)       -> "$EASING.outQuad      #{t}, #{b}, #{c}, #{d}"
+export macro QUAD_INOUT    = (t, b, c, d)       -> "$EASING.inOutQuad    #{t}, #{b}, #{c}, #{d}"
+export macro QUAD_OUTIN    = (t, b, c, d)       -> "$EASING.outInQuad    #{t}, #{b}, #{c}, #{d}"
+export macro CUBIC_IN      = (t, b, c, d)       -> "$EASING.inCubic      #{t}, #{b}, #{c}, #{d}"
+export macro CUBIC_OUT     = (t, b, c, d)       -> "$EASING.outCubic     #{t}, #{b}, #{c}, #{d}"
+export macro CUBIC_INOUT   = (t, b, c, d)       -> "$EASING.inOutCubic   #{t}, #{b}, #{c}, #{d}"
+export macro CUBIC_OUTIN   = (t, b, c, d)       -> "$EASING.outInCubic   #{t}, #{b}, #{c}, #{d}"
+export macro QUART_IN      = (t, b, c, d)       -> "$EASING.inQuart      #{t}, #{b}, #{c}, #{d}"
+export macro QUART_OUT     = (t, b, c, d)       -> "$EASING.outQuart     #{t}, #{b}, #{c}, #{d}"
+export macro QUART_INOUT   = (t, b, c, d)       -> "$EASING.inOutQuart   #{t}, #{b}, #{c}, #{d}"
+export macro QUART_OUTIN   = (t, b, c, d)       -> "$EASING.outInQuart   #{t}, #{b}, #{c}, #{d}"
+export macro QUINT_IN      = (t, b, c, d)       -> "$EASING.inQuint      #{t}, #{b}, #{c}, #{d}"
+export macro QUINT_OUT     = (t, b, c, d)       -> "$EASING.outQuint     #{t}, #{b}, #{c}, #{d}"
+export macro QUINT_INOUT   = (t, b, c, d)       -> "$EASING.inOutQuint   #{t}, #{b}, #{c}, #{d}"
+export macro QUINT_OUTIN   = (t, b, c, d)       -> "$EASING.outInQuint   #{t}, #{b}, #{c}, #{d}"
+export macro SINE_IN       = (t, b, c, d)       -> "$EASING.inSine       #{t}, #{b}, #{c}, #{d}"
+export macro SINE_OUT      = (t, b, c, d)       -> "$EASING.outSine      #{t}, #{b}, #{c}, #{d}"
+export macro SINE_INOUT    = (t, b, c, d)       -> "$EASING.inOutSine    #{t}, #{b}, #{c}, #{d}"
+export macro SINE_OUTIN    = (t, b, c, d)       -> "$EASING.outInSine    #{t}, #{b}, #{c}, #{d}"
+export macro EXPO_IN       = (t, b, c, d)       -> "$EASING.inExpo       #{t}, #{b}, #{c}, #{d}"
+export macro EXPO_OUT      = (t, b, c, d)       -> "$EASING.outExpo      #{t}, #{b}, #{c}, #{d}"
+export macro EXPO_INOUT    = (t, b, c, d)       -> "$EASING.inOutExpo    #{t}, #{b}, #{c}, #{d}"
+export macro EXPO_OUTIN    = (t, b, c, d)       -> "$EASING.outInExpo    #{t}, #{b}, #{c}, #{d}"
+export macro CIRC_IN       = (t, b, c, d)       -> "$EASING.inCirc       #{t}, #{b}, #{c}, #{d}"
+export macro CIRC_OUT      = (t, b, c, d)       -> "$EASING.outCirc      #{t}, #{b}, #{c}, #{d}"
+export macro CIRC_INOUT    = (t, b, c, d)       -> "$EASING.inOutCirc    #{t}, #{b}, #{c}, #{d}"
+export macro CIRC_OUTIN    = (t, b, c, d)       -> "$EASING.outInCirc    #{t}, #{b}, #{c}, #{d}"
+export macro ELASTIC_IN    = (t, b, c, d, a, p) -> "$EASING.inElastic    #{t}, #{b}, #{c}, #{d}, #{a}, #{p}"
+export macro ELASTIC_OUT   = (t, b, c, d, a, p) -> "$EASING.outElastic   #{t}, #{b}, #{c}, #{d}, #{a}, #{p}"
+export macro ELASTIC_INOUT = (t, b, c, d, a, p) -> "$EASING.inOutElastic #{t}, #{b}, #{c}, #{d}, #{a}, #{p}"
+export macro ELASTIC_OUTIN = (t, b, c, d, a, p) -> "$EASING.outInElastic #{t}, #{b}, #{c}, #{d}, #{a}, #{p}"
+export macro BACK_IN       = (t, b, c, d, s)    -> "$EASING.inBack       #{t}, #{b}, #{c}, #{d}, #{s}"
+export macro BACK_OUT      = (t, b, c, d, s)    -> "$EASING.outBack      #{t}, #{b}, #{c}, #{d}, #{s}"
+export macro BACK_INOUT    = (t, b, c, d, s)    -> "$EASING.inOutBack    #{t}, #{b}, #{c}, #{d}, #{s}"
+export macro BACK_OUTIN    = (t, b, c, d, s)    -> "$EASING.outInBack    #{t}, #{b}, #{c}, #{d}, #{s}"
+export macro BOUNCE_IN     = (t, b, c, d)       -> "$EASING.inBounce     #{t}, #{b}, #{c}, #{d}"
+export macro BOUNCE_OUT    = (t, b, c, d)       -> "$EASING.outBounce    #{t}, #{b}, #{c}, #{d}"
+export macro BOUNCE_INOUT  = (t, b, c, d)       -> "$EASING.inOutBounce  #{t}, #{b}, #{c}, #{d}"
+export macro BOUNCE_OUTIN  = (t, b, c, d)       -> "$EASING.outInBounce  #{t}, #{b}, #{c}, #{d}"
+
+-- Crank Indicator
+export macro CRANKINDICATOR_START     =        -> "$UI\\start!"
+export macro CRANKINDICATOR_UPDATE    =        -> "$UI\\update!"
+export macro CRANKINDICATOR_CLOCKWISE = (flag) -> "$UI.clockwise #{flag}"
+
+-- Garbage Collector
+export macro GARBAGE         = (flag)         -> "playdate.setCollectsGarbage #{flag}"
+export macro GARBAGE_MINIMUM = (milliseconds) -> "playdate.setMinimumGCTime #{milliseconds}"
+export macro GARBAGE_SCALING = (min, max)     -> "playdate.setGCScaling #{min}, #{max}"
+
+-- Simulator
+export macro SIMULATOR             =               -> "playdate.isSimulator"
+export macro SIMULATOR_WRITETOFILE = (image, path) -> "playdate.simulator.writeToFile #{image}, #{path}"
+export macro SIMULATOR_URL         = (url)         -> "playdate.simulator.getURL #{url}"
+export macro SIMULATOR_CLEAR       =               -> "playdate.clearConsole!"
+export macro SIMULATOR_DEBUG_COLOR = (r, g, b, a)  -> "playdate.simulator.setDebugDrawColor #{r}, #{g}, #{b}, #{a}"
