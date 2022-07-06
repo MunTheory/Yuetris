@@ -344,11 +344,11 @@ const rotations =
 						* {  2, -1 }
 --
 
-macro COMMON = -> "rotations[$ROTATION_COMMON]"
+macro COMMON = -> "rotations?[$ROTATION_COMMON]"
 
 export rotation = =>
 	if "number" == type @
-		return rotations[@] ?? $COMMON
+		return rotations?[@] ?? $COMMON
 	@ ?? $COMMON
 
 export rotate = (instance, turn) =>
