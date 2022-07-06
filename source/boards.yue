@@ -6,13 +6,14 @@ $REQUIRE "bags"
 $REQUIRE "pieces"
 $REQUIRE "randomizers"
 
-export new = (width = 10, height = 40, row = 20, fill = $PIECE_NONE) -> {
+export new = (width = 10, height = 40, play_width = 10, play_height = 20, fill = $PIECE_NONE) -> {
 	rotation: $ROTATION_SRS
 	style: $STYLE_DEFAULT
 
 	:width
 	:height
-	:row
+	:play_width
+	:play_height
 	matrix: for y = 1, height do for x = 1, width do if "number" == type fill then fill else fill x, y
 
 	current: nil
