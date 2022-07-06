@@ -38,5 +38,5 @@ export random_seed = (value) =>
 
 export random_next = (x, y) =>
 	if "number" == type @next
-		return randoms[@next](@, x, y)
+		return randoms[@next] @, x, y
 	@next x y
