@@ -7,6 +7,7 @@ import "macros" as $
 
 $REQUIRE "bags"
 $REQUIRE "boards"
+$REQUIRE "controllers"
 $REQUIRE "games"
 $REQUIRE "pieces"
 $REQUIRE "randomizers"

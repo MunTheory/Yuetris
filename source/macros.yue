@@ -17,6 +17,11 @@ export macro PIECE_Z        = ->  7
 -- Piece Flags
 export macro FLAG_NORMAL = -> 1 << -1
 
+-- Controller Identifiers
+export macro CONTROLLER_NOTHING  = -> 0
+export macro CONTROLLER_PLAYDATE = -> 1
+export macro CONTROLLER_AI       = -> 2
+
 -- Bag Identifiers
 export macro BAG_NONE        = -> 0
 export macro BAG_TETROMINOES = -> 1

@@ -1,0 +1,8 @@
+global ^
+
+import "macros" as $
+
+const controllers =
+	[$CONTROLLER_NOTHING]: {}
+	[$CONTROLLER_PLAYDATE]: {} -- TODO: Not yet implemented
+	[$CONTROLLER_AI]: {} -- TODO: Not yet implemented
