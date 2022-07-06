@@ -6,9 +6,7 @@ const rotations =
 	[$ROTATION_COMMON]:
 		rotate: (instance, turn) => false
 		row: (instance) => 0
-		pieces:
-			[$PIECE_HANDICAP]:
-				width: 10
+		pieces: {}
 	[$ROTATION_SRS]:
 		rotate: (instance, turn) => false
 		row: (instance) => 0
