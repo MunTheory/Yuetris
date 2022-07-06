@@ -6,7 +6,9 @@ const rotations =
 	[$ROTATION_COMMON]:
 		rotate: (instance, turn) => false
 		row: (instance) => 0
-		pieces: {}
+		pieces:
+			[$PIECE_HANDICAP]:
+				width: 10
 	[$ROTATION_SRS]:
 		rotate: (instance, turn) => false
 		row: (instance) => 0
@@ -343,3 +345,25 @@ const rotations =
 						* { -1,  2 }
 						* {  2, -1 }
 --
+
+macro COMMON = -> "rotations[$ROTATION_COMMON]"
+
+export rotation = =>
+	if "number" == type @
+		return rotations[@] ?? $COMMON
+	@ ?? $COMMON
+
+export rotate = (instance, turn) =>
+	((rotation @)?.rotate ?? $COMMON?.rotate) @, instance, turn
+
+export row = (instance) =>
+	((rotation @)?.row ?? $COMMON?.row) @, instance
+
+export pieces = =>
+	(rotation @)?.pieces ?? $COMMON?.pieces
+
+export piece = (identifier) =>
+	(pieces @)[identifier] ?? $COMMON?.pieces[identifier]
+
+export orientation = (identifier, index) =>
+	(piece @, identifier)?.orientations[index] ?? $COMMON?.pieces[identifier]?.orientations[index]
