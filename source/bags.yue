@@ -16,7 +16,7 @@ const bags =
 
 export table = =>
 	if "number" == type @
-		return bags[@][index]
+		return bags[@]
 	@
 
 export at = (index, value) =>
