@@ -2,6 +2,12 @@ global ^
 
 import "macros" as $
 
+-- An instance of a bag can be one of two: a `number`
+-- or a `table` of references.
+--
+-- `nil` values are allowed, but will represent as an
+-- empty item in game.
+
 const bags =
 	[$BAG_NONE]: {}
 	[$BAG_TETROMINOES]:
@@ -14,18 +20,15 @@ const bags =
 		* $PIECE_Z
 --
 
-export table = =>
-	if "number" == type @
-		return bags[@]
-	@
+-- If `self` is a number, it's a reference to the table.
+-- If not, it's a custom one not available on the table,
+-- so we'll just return it.
+--
+-- Shouldn't return `nil`.
+export table = => if "number" == type @ then bags[@] else @
 
-export at = (index, value) =>
-	if value?
-		(table @)[index] = value
-	(table @)[index]
+-- Functions
 
-export size = =>
-	#table @
-
-export foreach = (func) =>
-	return for i in *table @ do func i
+export at      = (index) => (table @)[index]
+export size    =         => #table @
+export foreach = (func)  => for i in *table @ do func i

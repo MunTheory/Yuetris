@@ -2,7 +2,38 @@ global ^
 
 import "macros" as $
 
-const styles =
-	[$STYLE_DEFAULT]: {}
+-- Styles are used to define the look and feel of
+-- a board and piece instance. Any instance can hinder
+-- and modify the difficulty of the game, but **must
+-- not** modify the game or board's rules or mechanics.
+--
+-- This system is special compared to the other systems and
+-- tables in this project. If an item is not available in
+-- the instance given, we'll fallback to a common-instance:
+-- an instance that has common implementations.
+--
+-- STYLE
+-- size: the size of a cell in the board instance.
+-- padding: the padding of a cell in the board instance, or
+-- the amount removed from the `size` field.
 
-return
+const styles =
+	[$STYLE_COMMON]:
+		size: 10
+		padding: 1
+--
+
+-- Useful macros to truncate code in source.
+
+macro US     = -> "style @"
+macro COMMON = -> "styles?[$STYLE_COMMON]"
+
+-- If `self` is a number, it's a reference to the table.
+-- If not, it's a custom one not available on the table,
+-- so we'll just return it.
+export style = => if "number" == type @ then styles?[@] ?? $COMMON else @ ?? $COMMON
+
+-- Getters
+
+export size    = => (style @)?.size    ?? $COMMON.size
+export padding = => (style @)?.padding ?? $COMMON.padding

@@ -2,6 +2,15 @@
 -- YUETRIS
 --
 
+-- Bag Identifiers
+export macro BAG_NONE        = -> 0
+export macro BAG_TETROMINOES = -> 1
+
+-- Controller Identifiers
+export macro CONTROLLER_NOTHING  = -> 0
+export macro CONTROLLER_PLAYDATE = -> 1
+export macro CONTROLLER_AI       = -> 2
+
 -- Piece Identifiers
 export macro PIECE_HANDICAP = -> -2
 export macro PIECE_GARBAGE  = -> -1
@@ -17,30 +26,20 @@ export macro PIECE_Z        = ->  7
 -- Piece Flags
 export macro FLAG_NORMAL = -> 1 << -1
 
--- Controller Identifiers
-export macro CONTROLLER_NOTHING  = -> 0
-export macro CONTROLLER_PLAYDATE = -> 1
-export macro CONTROLLER_AI       = -> 2
+-- Randomizer Identifiers
+export macro RANDOMIZER_RANDOM = -> 0
+export macro RANDOMIZER_BAG    = -> 1
 
--- Bag Identifiers
-export macro BAG_NONE        = -> 0
-export macro BAG_TETROMINOES = -> 1
+-- Random Identifiers
+export macro RANDOM_RNG  = -> 0
+export macro RANDOM_PRNG = -> 1
 
 -- Rotation Identifiers
 export macro ROTATION_COMMON = -> 0
 export macro ROTATION_SRS    = -> 1
 
--- Random Identifiers
-export macro RANDOM_RNG  = -> 0
-export macro RANDOM_PRNG = -> 1
-export macro RANDOM_SAME = -> 2
-
--- Randomizer Identifiers
-export macro RANDOMIZER_RANDOM = -> 0
-export macro RANDOMIZER_BAG    = -> 1
-
 -- Styles
-export macro STYLE_DEFAULT = -> 0
+export macro STYLE_COMMON = -> 0
 
 --
 -- PLAYDATE

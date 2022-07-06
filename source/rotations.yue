@@ -2,6 +2,34 @@ global ^
 
 import "macros" as $
 
+-- Rotations define the rotation functions, which row to spawn
+-- pieces in, defines pieces, include kickdata, etc. A lot of
+-- information is found in a rotation instance.
+--
+-- This system is special compared to the other systems and
+-- tables in this project. If an item is not available in
+-- the instance given, we'll fallback to a common-instance:
+-- an instance that has common implementations.
+--
+-- ROTATION SYSTEM
+-- rotate: a function that returns whether the piece-instance
+-- given can be rotated.
+-- row: a function that returns a number on what row the piece
+-- should try to spawn at.
+-- pieces: a map of available piece definitions in the instance.
+--
+-- PIECE DEFINITION
+-- width: the matrix-width of the piece.
+-- height: the matrix-height of the piece.
+-- orientations: an array of possible orientations of the piece.
+--
+-- PIECE ORIENTATION
+-- x: the x-position of the first active-cell.
+-- y: the y-position of the first active-cell.
+-- width: the width of the piece.
+-- height: the height of the piece.
+-- matrix: a 2-dimensional array that represents the piece.
+
 const rotations =
 	[$ROTATION_COMMON]:
 		rotate: (instance, turn) => false
@@ -344,6 +372,8 @@ const rotations =
 						* {  2, -1 }
 --
 
+-- Useful macros to truncate code in source.
+
 macro US             = -> "rotation @"
 macro US_PIECE       = -> "piece @, identifier"
 macro US_ORIENTATION = -> "orientation @, identifier, index"
@@ -352,46 +382,30 @@ macro COMMON             = -> "rotations?[$ROTATION_COMMON]"
 macro COMMON_PIECE       = -> "$COMMON?.pieces?[identifier]"
 macro COMMON_ORIENTATION = -> "$COMMON_PIECE?.orientations?[index]"
 
-export rotation = =>
-	if "number" == type @
-		return rotations?[@] ?? $COMMON
-	@ ?? $COMMON
+-- If `self` is a number, it's a reference to the table.
+-- If not, it's a custom one not available on the table,
+-- so we'll just return it.
+--
+-- All else fails, we return the common rotation system.
+-- Can return `nil`; if `nil` is returned, not even the
+-- common instance has a value of what's being accessed.
+export rotation = => if "number" == type @ then rotations?[@] ?? $COMMON else @ ?? $COMMON
 
-export rotate = (instance, turn) =>
-	($US?.rotate ?? $COMMON?.rotate) @, instance, turn
+-- Function Calls
 
-export row = (instance) =>
-	(US?.row ?? $COMMON?.row) @, instance
+export rotate        = (instance, turn)    => ($US?.rotate ?? $COMMON?.rotate) @, instance, turn
+export row           = (instance)          => ($US?.row    ?? $COMMON?.row   ) @, instance
 
-export pieces = =>
-	US?.pieces ?? $COMMON?.pieces
+-- Getters
 
-export piece = (identifier) =>
-	(pieces @)?[identifier] ?? $COMMON_PIECE
-
-export matrix_width = (identifier) =>
-	$US_PIECE?.width ?? $COMMON_PIECE?.width
-
-export matrix_height = (identifier) =>
-	$US_PIECE.height ?? $COMMON_PIECE?.height
-
-export orientations = (identifier) =>
-	$US_PIECE?.orientations ?? $COMMON_PIECE?.orientations
-
-export orientation = (identifier, index) =>
-	(orientations @, identifier)?[index] ?? $COMMON_ORIENTATION
-
-export x = (identifier, index) =>
-	$US_ORIENTATION?.x ?? $COMMON_ORIENTATION?.x
-
-export y = (identifier, index) =>
-	$US_ORIENTATION?.y ?? $COMMON_ORIENTATION?.y
-
-export width = (identifier, index) =>
-	$US_ORIENTATION?.width ?? $COMMON_ORIENTATION?.width
-
-export height = (identifier, index) =>
-	$US_ORIENTATION?.height ?? $COMMON_ORIENTATION?.height
-
-export matrix = (identifier, index) =>
-	$US_ORIENTATION?.matrix ?? $COMMON_ORIENTATION?.matrix
+export pieces        =                     => $US?.pieces                          ?? $COMMON?.pieces
+export piece         = (identifier)        => (pieces @)?[identifier]              ?? $COMMON_PIECE
+export matrix_width  = (identifier)        => $US_PIECE?.width                     ?? $COMMON_PIECE?.width
+export matrix_height = (identifier)        => $US_PIECE.height                     ?? $COMMON_PIECE?.height
+export orientations  = (identifier)        => $US_PIECE?.orientations              ?? $COMMON_PIECE?.orientations
+export orientation   = (identifier, index) => (orientations @, identifier)?[index] ?? $COMMON_ORIENTATION
+export x             = (identifier, index) => $US_ORIENTATION?.x                   ?? $COMMON_ORIENTATION?.x
+export y             = (identifier, index) => $US_ORIENTATION?.y                   ?? $COMMON_ORIENTATION?.y
+export width         = (identifier, index) => $US_ORIENTATION?.width               ?? $COMMON_ORIENTATION?.width
+export height        = (identifier, index) => $US_ORIENTATION?.height              ?? $COMMON_ORIENTATION?.height
+export matrix        = (identifier, index) => $US_ORIENTATION?.matrix              ?? $COMMON_ORIENTATION?.matrix

@@ -2,8 +2,19 @@ global ^
 
 import "macros" as $
 
--- Each function should replicate math.random
+-- What makes this system different from the other systems
+-- is that the table is not defining instances, but instead
+-- functions/values for an instance.
+--
+-- RANDOM
+-- next: either a number (used to reference the table)
+-- or a function, with `self, x, y` parameters. This
+-- function acts as the random-function and should replicate
+-- the `math.random`.
+
 const randoms =
+	-- Not "exactly" non-psuedo-random; acts as a `math.random`
+	-- wrapper.
 	[$RANDOM_RNG]: (x, y) =>
 		if y
 			math.random x, y
@@ -11,6 +22,10 @@ const randoms =
 			math.random x
 		else
 			math.random!
+
+	-- A psuedo-random number generator using XOR-shifting with
+	-- 32-bits. Uses a mutable `seed` to generate a pseudo-random
+	-- number.
 	[$RANDOM_PRNG]: (x, y) =>
 		@seed = @seed ~ (@seed << 13)
 		@seed = @seed ~ (@seed >> 17)
@@ -22,21 +37,6 @@ const randoms =
 			math.floor 1 + (x / (math.maxinteger - 1)) * (math.abs @seed - 1)
 		else
 			(math.abs @seed - 1) / (math.maxinteger - 1)
-	[$RANDOM_SAME]: (x, y) =>
-		if y
-			math.ceil math.max (math.min @seed, x), y
-		elseif x
-			math.ceil math.max (math.min @seed, 1), x
-		else
-			math.max (math.min @seed, 0), 1
 --
 
-export seed = (value) =>
-	if value?
-		@seed = value
-	@seed
-
-export next = (x, y) =>
-	if "number" == type @next
-		return randoms[@next] @, x, y
-	@next x, y
+export next = (x, y) => if "number" == type @next then randoms[@next] @, x, y else @next x, y

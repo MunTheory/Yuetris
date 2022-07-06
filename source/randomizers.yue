@@ -4,8 +4,27 @@ import "macros" as $
 
 $REQUIRE "randoms"
 
+-- What makes this system different from the other systems
+-- is that the table is not defining instances, but instead
+-- functions/values for an instance.
+--
+-- RANDOMIZER
+-- random: a random-instance found in `randoms.yue`.
+-- next: either a number (used to reference the table)
+-- or a function, with `self, data` parameters. This function
+-- should return an item from `data`; the order of how it
+-- returns is not important.
+
 const randomizers =
+	-- A completely-random randomizer, utilizing the `random`
+	-- field in the instance.
 	[$RANDOMIZER_RANDOM]: (data) => data[randoms.next @random, #data]
+
+	-- A randomizer that uses the 'bag' technique to generate
+	-- random results in a pattern-like manner. `data` is pushed
+	-- into a queue if-and-only-if `queue` is empty (can control
+	-- the amount using `iterations`). `queue` is then popped until
+	-- it's empty.
 	[$RANDOMIZER_BAG]: (data) =>
 		@queue ??= {}
 
@@ -23,7 +42,4 @@ const randomizers =
 		table.remove @queue
 --
 
-export next = (data) =>
-	if "number" == type @next
-		return randomizers[@next] @, data
-	@next data
+export next = (data) => if "number" == type @next then randomizers[@next] @, data else @next data

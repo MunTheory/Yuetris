@@ -8,7 +8,7 @@ $REQUIRE "randomizers"
 
 export new = (width = 10, height = 40, play_width = 10, play_height = 20, fill = $PIECE_NONE) -> {
 	rotation: $ROTATION_SRS
-	style: $STYLE_DEFAULT
+	style: $STYLE_COMMON
 
 	:width
 	:height
