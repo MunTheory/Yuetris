@@ -23,12 +23,10 @@ export bag_at = (index, value) =>
 	if "number" == type @
 		if value?
 			bags[@][index] = value
-		else
-			return bags[@][index]
+		return bags[@][index]
 	if value?
 		@[index] = value
-	else
-		return @[index]
+	@[index]
 
 export bag_size = =>
 	if "number" == type @
