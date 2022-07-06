@@ -364,28 +364,28 @@ export piece = (identifier) =>
 	(pieces @)?[identifier] ?? $COMMON?.pieces?[identifier]
 
 export matrix_width = (identifier) =>
-	(piece @ identifier)?.width ?? $COMMON?.pieces?[identifier]?.width
+	(piece @, identifier)?.width ?? $COMMON?.pieces?[identifier]?.width
 
 export matrix_height = (identifier) =>
-	(piece @ identifier)?.height ?? $COMMON?.pieces?[identifier]?.height
+	(piece @, identifier)?.height ?? $COMMON?.pieces?[identifier]?.height
 
 export orientations = (identifier) =>
-	(piece @ identifier)?.orientations ?? $COMMON?.pieces?[identifier]?.orientations
+	(piece @, identifier)?.orientations ?? $COMMON?.pieces?[identifier]?.orientations
 
 export orientation = (identifier, index) =>
-	(orientations @ identifier)?[index] ?? $COMMON?.pieces?[identifier]?.orientations[index]
+	(orientations @, identifier)?[index] ?? $COMMON?.pieces?[identifier]?.orientations[index]
 
 export x = (identifier, index) =>
-	(orientation @ identifier)?.x ?? $COMMON?.pieces?[identifier]?.orientations[index]?.x
+	(orientation @, identifier)?.x ?? $COMMON?.pieces?[identifier]?.orientations[index]?.x
 
 export y = (identifier, index) =>
-	(orientation @ identifier)?.y ?? $COMMON?.pieces?[identifier]?.orientations[index]?.y
+	(orientation @, identifier)?.y ?? $COMMON?.pieces?[identifier]?.orientations[index]?.y
 
 export width = (identifier, index) =>
-	(orientation @ identifier)?.width ?? $COMMON?.pieces?[identifier]?.orientations[index]?.width
+	(orientation @, identifier)?.width ?? $COMMON?.pieces?[identifier]?.orientations[index]?.width
 
 export height = (identifier, index) =>
-	(orientation @ identifier)?.height ?? $COMMON?.pieces?[identifier]?.orientations[index]?.height
+	(orientation @, identifier)?.height ?? $COMMON?.pieces?[identifier]?.orientations[index]?.height
 
 export matrix = (identifier, index) =>
-	(orientation @ identifier)?.matrix ?? $COMMON?.pieces?[identifier]?.orientations[index]?.matrix
+	(orientation @, identifier)?.matrix ?? $COMMON?.pieces?[identifier]?.orientations[index]?.matrix
