@@ -39,4 +39,4 @@ export seed = (value) =>
 export next = (x, y) =>
 	if "number" == type @next
 		return randoms[@next] @, x, y
-	@next x y
+	@next x, y
