@@ -20,20 +20,12 @@ export table = =>
 	@
 
 export at = (index, value) =>
-	if "number" == type @
-		if value?
-			bags[@][index] = value
-		return bags[@][index]
 	if value?
-		@[index] = value
-	@[index]
+		(table @)[index] = value
+	(table @)[index]
 
 export size = =>
-	if "number" == type @
-		return #bags[@]
-	#@
+	#table @
 
 export foreach = (func) =>
-	if "number" == type @
-		return for i in *bags[@] do func i
-	return for i in *@ do func i
+	return for i in *table @ do func i
