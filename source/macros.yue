@@ -14,6 +14,9 @@ export macro PIECE_L        = ->  5
 export macro PIECE_S        = ->  6
 export macro PIECE_Z        = ->  7
 
+-- Piece Flags
+export macro FLAG_NORMAL = -> 1 << -1
+
 -- Bag Identifiers
 export macro BAG_NONE        = -> 0
 export macro BAG_TETROMINOES = -> 1
