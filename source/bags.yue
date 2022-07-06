@@ -14,10 +14,20 @@ const bags =
 		* $PIECE_Z
 --
 
+export bag_table = =>
+	if "number" == type @
+		return bags[@][index]
+	return @
+
 export bag_get = (index) =>
 	if "number" == type @
 		return bags[@][index]
 	return @[index]
+
+export bag_set = (index, value) =>
+	if "number" == type @
+		bags[@][index] = value
+	@[index] = value
 
 export bag_size = =>
 	if "number" == type @
