@@ -1,0 +1,9 @@
+global ^
+
+import "macros" as $
+
+const styles =
+	[$STYLE_NOTHING]: {}
+	[$STYLE_NORMAL]: {} -- TODO: Not yet implemented
+
+return

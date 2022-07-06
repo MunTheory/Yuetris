@@ -13,5 +13,6 @@ $REQUIRE "pieces"
 $REQUIRE "randomizers"
 $REQUIRE "randoms"
 $REQUIRE "rotations"
+$REQUIRE "styles"
 
 playdate.update = ->
