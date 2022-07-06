@@ -31,6 +31,10 @@ macro COMMON = -> "styles?[$STYLE_COMMON]"
 -- If `self` is a number, it's a reference to the table.
 -- If not, it's a custom one not available on the table,
 -- so we'll just return it.
+--
+-- All else fails, we return the common style instance.
+-- Can return `nil`; if `nil` is returned, not even the
+-- common instance has a value of what's being accessed.
 export style = => if "number" == type @ then styles?[@] ?? $COMMON else @ ?? $COMMON
 
 -- Getters
