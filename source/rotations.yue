@@ -344,7 +344,13 @@ const rotations =
 						* {  2, -1 }
 --
 
-macro COMMON = -> "rotations?[$ROTATION_COMMON]"
+macro US             = -> "rotation @"
+macro US_PIECE       = -> "piece @, identifier"
+macro US_ORIENTATION = -> "orientation @, identifier, index"
+
+macro COMMON             = -> "rotations?[$ROTATION_COMMON]"
+macro COMMON_PIECE       = -> "$COMMON?.pieces?[identifier]"
+macro COMMON_ORIENTATION = -> "$COMMON_PIECE?.orientations?[index]"
 
 export rotation = =>
 	if "number" == type @
@@ -352,40 +358,40 @@ export rotation = =>
 	@ ?? $COMMON
 
 export rotate = (instance, turn) =>
-	((rotation @)?.rotate ?? $COMMON?.rotate) @, instance, turn
+	($US?.rotate ?? $COMMON?.rotate) @, instance, turn
 
 export row = (instance) =>
-	((rotation @)?.row ?? $COMMON?.row) @, instance
+	(US?.row ?? $COMMON?.row) @, instance
 
 export pieces = =>
-	(rotation @)?.pieces ?? $COMMON?.pieces
+	US?.pieces ?? $COMMON?.pieces
 
 export piece = (identifier) =>
-	(pieces @)?[identifier] ?? $COMMON?.pieces?[identifier]
+	(pieces @)?[identifier] ?? $COMMON_PIECE
 
 export matrix_width = (identifier) =>
-	(piece @, identifier)?.width ?? $COMMON?.pieces?[identifier]?.width
+	$US_PIECE?.width ?? $COMMON_PIECE?.width
 
 export matrix_height = (identifier) =>
-	(piece @, identifier)?.height ?? $COMMON?.pieces?[identifier]?.height
+	$US_PIECE.height ?? $COMMON_PIECE?.height
 
 export orientations = (identifier) =>
-	(piece @, identifier)?.orientations ?? $COMMON?.pieces?[identifier]?.orientations
+	$US_PIECE?.orientations ?? $COMMON_PIECE?.orientations
 
 export orientation = (identifier, index) =>
-	(orientations @, identifier)?[index] ?? $COMMON?.pieces?[identifier]?.orientations[index]
+	(orientations @, identifier)?[index] ?? $COMMON_ORIENTATION
 
 export x = (identifier, index) =>
-	(orientation @, identifier)?.x ?? $COMMON?.pieces?[identifier]?.orientations[index]?.x
+	$US_ORIENTATION?.x ?? $COMMON_ORIENTATION?.x
 
 export y = (identifier, index) =>
-	(orientation @, identifier)?.y ?? $COMMON?.pieces?[identifier]?.orientations[index]?.y
+	$US_ORIENTATION?.y ?? $COMMON_ORIENTATION?.y
 
 export width = (identifier, index) =>
-	(orientation @, identifier)?.width ?? $COMMON?.pieces?[identifier]?.orientations[index]?.width
+	$US_ORIENTATION?.width ?? $COMMON_ORIENTATION?.width
 
 export height = (identifier, index) =>
-	(orientation @, identifier)?.height ?? $COMMON?.pieces?[identifier]?.orientations[index]?.height
+	$US_ORIENTATION?.height ?? $COMMON_ORIENTATION?.height
 
 export matrix = (identifier, index) =>
-	(orientation @, identifier)?.matrix ?? $COMMON?.pieces?[identifier]?.orientations[index]?.matrix
+	$US_ORIENTATION?.matrix ?? $COMMON_ORIENTATION?.matrix
