@@ -1,5 +1,8 @@
 global ^
 
+-- Fixes importing issue with Yuescript.
+global require = _G['import']
+
 import "macros" as $
 
 $IMPORT "bags"

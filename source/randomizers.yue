@@ -1,7 +1,8 @@
 global ^
 
 import "macros" as $
-import "randoms"
+
+$IMPORT "randoms"
 
 const randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[randoms.next @random, #data]

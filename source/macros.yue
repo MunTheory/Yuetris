@@ -36,10 +36,12 @@ export macro RANDOMIZER_BAG    = -> 1
 --
 
 -- Global Functions
-export macro IMPORT = (path) -> {
+export macro IMPORT = (path) -> "import #{path}\n$IMPORT_ #{path}"
+macro IMPORT_ = (path) -> {
 	code: "import(#{path})"
 	type: "lua"
 }
+
 export macro CLASS = (name, properties, namespace) ->
 	"_G['class'](#{name}, #{properties}, #{namespace})"
 
