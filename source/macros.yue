@@ -103,7 +103,7 @@ export macro CLEAR        = (color)             -> "$GRAPHICS.clear #{color}"
 export macro COLOR        = (color)             -> color? and "$GRAPHICS.setColor #{color}" or "$GRAPHICS.getColor!"
 export macro BACKGROUND   = (color)             -> color? and "$GRAPHICS.setBackgroundColor #{color}" or "$GRAPHICS.getBackgroundColor!"
 export macro PATTERN      = (pattern)           -> "$GRAPHICS.setPattern #{pattern}"
-export macro DITHER       = (alpha, ditherType) -> "$GRAPHICS.setDitherPattern #{alpha}, #{ditherType}"
+export macro DITHER       = (alpha, ditherType) -> ditherType? and "$GRAPHICS.setDitherPattern #{alpha}, #{ditherType}" or "$GRAPHICS.setDitherPattern #{alpha}"
 
 export macro LINE            = (x1, y1, x2, y2)     -> "$GRAPHICS.drawLine          #{x1}, #{y1}, #{x2}, #{y2}"
 export macro LINE_S          = (shape)              -> "$GRAPHICS.drawLine          #{shape}"
