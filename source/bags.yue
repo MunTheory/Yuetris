@@ -17,7 +17,7 @@ const bags =
 export bag_table = =>
 	if "number" == type @
 		return bags[@][index]
-	return @
+	@
 
 export bag_at = (index, value) =>
 	if "number" == type @
@@ -33,7 +33,7 @@ export bag_at = (index, value) =>
 export bag_size = =>
 	if "number" == type @
 		return #bags[@]
-	return #@
+	#@
 
 export bag_foreach = (func) =>
 	if "number" == type @
