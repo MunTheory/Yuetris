@@ -11,8 +11,6 @@ export new = (rotation = $ROTATION_SRS, piece = $PIECE_NONE) -> {
 	y: 0
 	r: 1
 	flags: $FLAG_NORMAL
-
-	style: $STYLE_NORMAL
 }
 
 -- Delegates

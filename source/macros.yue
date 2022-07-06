@@ -40,8 +40,7 @@ export macro RANDOMIZER_RANDOM = -> 0
 export macro RANDOMIZER_BAG    = -> 1
 
 -- Styles
-export macro STYLE_NOTHING = -> 0
-export macro STYLE_NORMAL  = -> 1
+export macro STYLE_DEFAULT = -> 0
 
 --
 -- PLAYDATE
