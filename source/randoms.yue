@@ -31,12 +31,12 @@ const randoms =
 			math.max (math.min @seed, 0), 1
 --
 
-export random_seed = (value) =>
+export seed = (value) =>
 	if value?
 		@seed = value
 	@seed
 
-export random_next = (x, y) =>
+export next = (x, y) =>
 	if "number" == type @next
 		return randoms[@next] @, x, y
 	@next x y

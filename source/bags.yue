@@ -14,12 +14,12 @@ const bags =
 		* $PIECE_Z
 --
 
-export bag_table = =>
+export table = =>
 	if "number" == type @
 		return bags[@][index]
 	@
 
-export bag_at = (index, value) =>
+export at = (index, value) =>
 	if "number" == type @
 		if value?
 			bags[@][index] = value
@@ -28,12 +28,12 @@ export bag_at = (index, value) =>
 		@[index] = value
 	@[index]
 
-export bag_size = =>
+export size = =>
 	if "number" == type @
 		return #bags[@]
 	#@
 
-export bag_foreach = (func) =>
+export foreach = (func) =>
 	if "number" == type @
 		return for i in *bags[@] do func i
 	return for i in *@ do func i

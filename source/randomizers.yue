@@ -4,7 +4,7 @@ import "macros" as $
 import "randoms"
 
 const randomizers =
-	[$RANDOMIZER_RANDOM]: (data) => data[randoms.random_next @random, #data]
+	[$RANDOMIZER_RANDOM]: (data) => data[randoms.next @random, #data]
 	[$RANDOMIZER_BAG]: (data) =>
 		@queue ??= {}
 
@@ -16,13 +16,13 @@ const randomizers =
 
 			-- Shuffle queue
 			for i = #@queue, 1, -1
-				j = randoms.random_next @random, 0, #@queue
+				j = randoms.next @random, 0, #@queue
 				@queue[i], @queue[j] = @queue[j], @queue[i]
 
 		table.remove @queue
 --
 
-export randomizer_next = (data) =>
+export next = (data) =>
 	if "number" == type @next
 		return randomizers[@next] @, data
 	@next data
