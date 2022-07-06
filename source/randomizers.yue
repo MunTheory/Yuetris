@@ -2,7 +2,7 @@ global ^
 
 import "macros" as $
 
-$IMPORT "randoms"
+$REQUIRE "randoms"
 
 const randomizers =
 	[$RANDOMIZER_RANDOM]: (data) => data[randoms.next @random, #data]

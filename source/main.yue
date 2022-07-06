@@ -5,9 +5,9 @@ global require = _G['import']
 
 import "macros" as $
 
-$IMPORT "bags"
-$IMPORT "randomizers"
-$IMPORT "randoms"
-$IMPORT "rotations"
+$REQUIRE "bags"
+$REQUIRE "randomizers"
+$REQUIRE "randoms"
+$REQUIRE "rotations"
 
 playdate.update = ->
