@@ -12,3 +12,23 @@ export new = (rotation = $ROTATION_SRS, piece = $PIECE_NONE) -> {
 	r: 1
 	flags: $FLAG_NORMAL
 }
+
+-- Delegates
+
+export matrix_width = =>
+	rotations.matrix_width @rotation, @piece
+
+export matrix_height = =>
+	rotations.matrix_height @rotation, @piece
+
+export rotation_x = (index = @r)  =>
+	rotations.x @rotation, @piece, index
+
+export rotation_y = (index = @r) =>
+	rotations.y @rotation, @piece, index
+
+export width = (index = @r) =>
+	rotations.width @rotation, @piece, index
+
+export height = (index = @r) =>
+	rotations.height @rotation, @piece, index
