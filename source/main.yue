@@ -4,6 +4,7 @@ import "macros" as $
 
 $IMPORT "bags"
 $IMPORT "randomizers"
+$IMPORT "randoms"
 $IMPORT "rotations"
 
 playdate.update = ->
