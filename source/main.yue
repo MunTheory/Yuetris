@@ -6,6 +6,9 @@ global require = _G['import']
 import "macros" as $
 
 $REQUIRE "bags"
+$REQUIRE "boards"
+$REQUIRE "games"
+$REQUIRE "pieces"
 $REQUIRE "randomizers"
 $REQUIRE "randoms"
 $REQUIRE "rotations"
