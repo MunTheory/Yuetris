@@ -21,3 +21,8 @@ const randomizers =
 
 		table.remove @queue
 --
+
+export randomizer_next = (data) =>
+	if "number" == type @next
+		return randomizers[@next] @, data
+	@next data
