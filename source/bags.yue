@@ -14,4 +14,17 @@ const bags =
 		* $PIECE_Z
 --
 
-return
+export bag_get = (index) =>
+	if "number" == type @
+		return bags[@][index]
+	return @[index]
+
+export bag_size = =>
+	if "number" == type @
+		return #bags[@]
+	return #@
+
+export bag_foreach = (func) =>
+	if "number" == type @
+		return for i in *bags[@] do func i
+	return for i in *@ do func i
