@@ -2,4 +2,13 @@ global ^
 
 import "macros" as $
 
-export new = ->
+$REQUIRE "rotations"
+
+export new = (rotation = $ROTATION_SRS, piece = $PIECE_NONE) -> {
+	:rotation
+	:piece
+	x: 0
+	y: 0
+	r: 1
+	flags: $FLAG_NORMAL
+}
