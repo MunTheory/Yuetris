@@ -16,11 +16,14 @@ import "macros" as $
 -- size: the size of a cell in the board instance.
 -- padding: the padding of a cell in the board instance, or
 -- the amount removed from the `size` field.
+-- margin: the margins of the board's matrix and the board's
+-- border.
 
 const styles =
 	[$STYLE_COMMON]:
 		size: 10
 		padding: 1
+		margin: 0
 --
 
 -- Useful macros to truncate code in source.
@@ -41,3 +44,4 @@ export style = => if "number" == type @ then styles?[@] ?? $COMMON else @ ?? $CO
 
 export size    = => (style @)?.size    ?? $COMMON?.size
 export padding = => (style @)?.padding ?? $COMMON?.padding
+export margin  = => (style @)?.margin  ?? $COMMON?.margin
