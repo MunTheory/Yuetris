@@ -39,5 +39,5 @@ export style = => if "number" == type @ then styles?[@] ?? $COMMON else @ ?? $CO
 
 -- Getters
 
-export size    = => (style @)?.size    ?? $COMMON.size
-export padding = => (style @)?.padding ?? $COMMON.padding
+export size    = => (style @)?.size    ?? $COMMON?.size
+export padding = => (style @)?.padding ?? $COMMON?.padding
